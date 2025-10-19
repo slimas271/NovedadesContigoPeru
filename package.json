@@ -1,0 +1,7 @@
+{
+    "name": "mi-sitio-web",
+    "version": "1.0.0",
+    "scripts": {
+    "start": "echo 'Sitio estático listo para Vercel'"
+    }
+}
