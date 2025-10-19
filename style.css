@@ -351,9 +351,16 @@ HERO
 }
 
 .novedad-card img {
-    width: 100%;
-    height: 500px;
+        width: 100%;
+    height: auto;
+    max-height: 600px;
+    aspect-ratio: 4/5; /* Mantiene proporción tipo retrato */
     object-fit: cover;
+    border-bottom: 3px solid var(--color-secundario);
+    transition: transform 0.3s ease;
+}
+.propiedad-card img:hover {
+    transform: scale(1.05);
 }
 
 .novedad-info {
@@ -449,8 +456,15 @@ HERO
 
 .propiedad-card img {
     width: 100%;
-    height: 500px;
+    height: auto;
+    max-height: 600px;
+    aspect-ratio: 4/5; /* Mantiene proporción tipo retrato */
     object-fit: cover;
+    border-bottom: 3px solid var(--color-secundario);
+    transition: transform 0.3s ease;
+}
+.propiedad-card img:hover {
+    transform: scale(1.05);
 }
 
 .propiedad-card h3 {
@@ -580,7 +594,7 @@ HERO
 
     .novedad-card img,
     .propiedad-card img {
-        height: 250px;
+        height: 300px;
     }
 
     .novedad-info h3,
