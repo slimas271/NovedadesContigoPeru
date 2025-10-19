@@ -914,3 +914,9 @@ RESPONSIVE
 footer p {
     opacity: 0.85;
 }
+
+@media (max-width: 768px) {
+    #novedades {
+        padding-top: 2px !important; 
+    }
+}
