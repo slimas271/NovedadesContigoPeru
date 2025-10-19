@@ -21,10 +21,10 @@
                 </button>
                 <ul id="main-menu" class="nav-links">
                     <li><a href="#"><i data-lucide="home"></i>Inicio</a></li>
-                    <li><a href="#catalogo"><i data-lucide="book"></i>Catalogo</a></li>
+                    <li><a href="#propiedades"><i data-lucide="book"></i>Catálogo</a></li>
                     <li><a href="#contacto"><i data-lucide="phone"></i>Contacto</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle"><i data-lucide="menu"></i>Más ▾</a>
+                        <a href="#" class="dropdown-toggle"><i data-lucide="menu"></i>Más▾</a>
                         <ul class="dropdown-menu">
                             <li><a href="#"><i data-lucide="truck"></i>Seguimiento de mi Pedido</a></li>
                             <li><a href="#"><i data-lucide="mail"></i>Contacto y sobre Nosotros</a></li>
@@ -43,7 +43,9 @@
         <section id="hero">
             <h1></h1>
             <p>Calidad premium y comodidad garantizadas</p>
-            <button class="cta-button">Catalogo</button>
+            <button class="cta-button" onclick="location.href='#catalogo'">Catálogo</button>
+
+            <button class="cta-button" onclick="location.href='#propiedades'">novedades</button>
         </section>
 
         <section id="propiedades">
@@ -81,7 +83,7 @@
                 </div>
             </section>
 
-            <h2>Catálogo</h2>
+            <h2 id="catalogo">Catálogo</h2>
             <div class="propiedades-grid">
                 <article class="propiedad-card">
                     <img src="img/Organizador de cabina.webp" alt="Organizador de cabina" loading="lazy">
