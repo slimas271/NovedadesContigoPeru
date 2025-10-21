@@ -823,6 +823,7 @@ RESPONSIVE
 }
 
 /* === Alinear iconos con texto y juntar más === */
+
 .nav-links a,
 .dropdown-menu a {
     display: flex;
@@ -841,12 +842,13 @@ RESPONSIVE
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin-right: 2px; /* pequeño ajuste visual */
+    margin-right: 2px; 
     position: relative;
-    top: 1px; /* corrige desalineación leve */
+    top: 1px; 
 }
 
 /* En pantallas pequeñas */
+
 @media (max-width: 768px) {
     .nav-links a,
     .dropdown-menu a {
