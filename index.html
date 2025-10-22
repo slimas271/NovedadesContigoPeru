@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propiedades - Novedades Contigo Perú</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -21,7 +21,7 @@
                 </button>
                 <ul id="main-menu" class="nav-links">
                     <li><a href="#"><i data-lucide="home"></i>Inicio</a></li>
-                    <li><a href="#propiedades"><i data-lucide="book"></i>Catálogo</a></li>
+                    <li><a href="#catalogo"><i data-lucide="book"></i>Catálogo</a></li>
                     <li><a href="#contacto"><i data-lucide="phone"></i>Contacto</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle"><i data-lucide="menu"></i>Más▾</a>
@@ -41,84 +41,93 @@
 
     <main>
         <section id="hero">
-            <h1></h1>
+            <h1>NOVEDADES CONTIGO PERÚ</h1>
             <p>Calidad premium y comodidad garantizadas</p>
             <button class="cta-button" onclick="location.href='#catalogo'">Catálogo</button>
-
-            <button class="cta-button" onclick="location.href='#propiedades'">novedades</button>
+            <button class="cta-button" onclick="location.href='#novedades'">Novedades</button>
         </section>
 
-        <section id="propiedades">
-            <section id="novedades">
-                <h2>✨ Novedades</h2>
-                <p class="subtexto">Los productos más vendidos y exclusivos de Novedades Contigo Perú</p>
+        <section id="redes-sociales">
+            <h2>Contáctanos directamente desde nuestras páginas oficiales</h2>
+            <div class="redes-sociales">
+                <a href="https://www.facebook.com/Pisos.novedades.contigo/?locale=es_LA" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/carmatperu2022?igsh=MXZheXRvdmZlazhtbQ==" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@novedades_contigo_peru?_t=ZS-90kYDcoRfuK&_r=1" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+                <a href="https://w.app/plrm01" target="_blank" class="whatsapp-link"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </section>
 
-                <div class="novedades-grid">
-                    <article class="novedad-card">
-                        <img src="img/cabina color negro.webp" alt="Producto nuevo 1">
-                        <div class="novedad-info">
-                            <h3>Nuevo Tapizado Premium</h3>
-                            <p>Tapizado de alta resistencia con acabado de lujo y diseño moderno.</p>
-                            <button>Ver más</button>
-                        </div>
-                    </article>
+        <section id="novedades">
+            <h2>✨ Novedades</h2>
+            <p class="subtexto">Los productos más vendidos y exclusivos de Novedades Contigo Perú</p>
 
-                    <article class="novedad-card">
-                        <img src="img/Cabina rojo con negro.webp" alt="Producto nuevo 2">
-                        <div class="novedad-info">
-                            <h3>Organizador Gold Edition</h3>
-                            <p>Nuevo modelo con detalles dorados y compartimientos mejorados.</p>
-                            <button>Ver más</button>
-                        </div>
-                    </article>
+            <div class="novedades-grid">
+                <article class="novedad-card">
+                    <img src="img/cabina-color-negro.webp" alt="Producto nuevo 1">
+                    <div class="novedad-info">
+                        <h3>Nuevo Tapizado Premium</h3>
+                        <p>Tapizado de alta resistencia con acabado de lujo y diseño moderno.</p>
+                        <button>Ver más</button>
+                    </div>
+                </article>
 
-                    <article class="novedad-card">
-                        <img src="img/Negro con plata.webp" alt="Producto nuevo 3">
-                        <div class="novedad-info">
-                            <h3>Set de Pisos Elite</h3>
-                            <p>Fabricados con materiales de máxima durabilidad y estilo exclusivo.</p>
-                            <button>Ver más</button>
-                        </div>
-                    </article>
-                </div>
-            </section>
+                <article class="novedad-card">
+                    <img src="img/cabina-rojo-negro.webp" alt="Producto nuevo 2">
+                    <div class="novedad-info">
+                        <h3>Organizador Gold Edition</h3>
+                        <p>Nuevo modelo con detalles dorados y compartimientos mejorados.</p>
+                        <button>Ver más</button>
+                    </div>
+                </article>
 
-            <h2 id="catalogo">Catálogo</h2>
-            <div class="propiedades-grid">
-                <article class="propiedad-card">
-                    <img src="img/Organizador de cabina.webp" alt="Organizador de cabina" loading="lazy">
+                <article class="novedad-card">
+                    <img src="img/negro-plata.webp" alt="Producto nuevo 3">
+                    <div class="novedad-info">
+                        <h3>Set de Pisos Elite</h3>
+                        <p>Fabricados con materiales de máxima durabilidad y estilo exclusivo.</p>
+                        <button>Ver más</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="catalogo">
+            <h2>Catálogo</h2>
+            <div class="catalogo-grid">
+                <article class="catalogo-card">
+                    <img src="img/Organizador-de-cabina.webp" alt="Organizador de cabina" loading="lazy">
                     <h3>Organizador de cabina</h3>
                     <p class="precio">S/80.00</p>
                     <p class="descripcion">Espacios amplios para su comodidad, ideal para su familia y para organizar sus cosas</p>
                     <button type="button">Ver más detalles</button>
                 </article>
 
-                <article class="propiedad-card">
-                    <img src="img/PISOS PVC.jpg" alt="Pisos universales" loading="lazy">
+                <article class="catalogo-card">
+                    <img src="img/PISOS-PVC.jpg" alt="Pisos universales" loading="lazy">
                     <h3>Pisos universales</h3>
                     <p class="precio">S/120.00</p>
                     <p class="descripcion">Pisos universales con la calidad que nos caracteriza. El paquete viene de 4 piezas.</p>
                     <button type="button">Ver más detalles</button>
                 </article>
 
-                <article class="propiedad-card">
-                    <img src="img/CABINA NORMAL.webp" alt="Pisos de cabina 2 filas" loading="lazy">
+                <article class="catalogo-card">
+                    <img src="img/CABINA-NORMAL.webp" alt="Pisos de cabina 2 filas" loading="lazy">
                     <h3>Pisos de cabina 2 filas</h3>
                     <p class="precio">S/380.00</p>
                     <p class="descripcion">Ideal para familias, cerca de colegios y servicios.</p>
                     <button type="button">Ver más detalles</button> 
                 </article>
 
-                <article class="propiedad-card">
-                    <img src="img/CABINA DUO.webp" alt="Pisos de cabina duo-color" loading="lazy">
+                <article class="catalogo-card">
+                    <img src="img/CABINA-DUO.webp" alt="Pisos de cabina duo-color" loading="lazy">
                     <h3>Pisos de cabina duo-color</h3>
                     <p class="precio">S/420.00</p>
                     <p class="descripcion">Diseño moderno y resistente para tu vehículo.</p>
                     <button type="button">Ver más detalles</button>
                 </article>
 
-                <article class="propiedad-card">
-                    <img src="img/CABINA GOLD.webp" alt="Pisos de cabina gold" loading="lazy">
+                <article class="catalogo-card">
+                    <img src="img/CABINA-GOLD.webp" alt="Pisos de cabina gold" loading="lazy">
                     <h3>Pisos de cabina gold</h3>
                     <p class="precio">S/660.00</p>
                     <p class="descripcion">Piso premium con acabado dorado que combina lujo y durabilidad.</p>

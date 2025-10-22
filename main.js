@@ -1,117 +1,130 @@
 document.addEventListener("DOMContentLoaded", () => {
     const navToggle = document.querySelector(".nav-toggle");
     const navLinks = document.querySelector(".nav-links");
+    const dropdowns = document.querySelectorAll(".dropdown");
     const modal = document.querySelector("#modal-container");
     const modalBody = document.querySelector("#modal-body");
     const modalClose = document.querySelector(".modal-close");
 
-    /* ===============================
-    NAVBAR TOGGLE (MENÚ RESPONSIVE)
-    =============================== */
-    if (!navToggle.innerHTML.trim()) {
-        navToggle.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fff" viewBox="0 0 24 24">
-                <path d="M4 6h16M4 12h16M4 18h16" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-            </svg>`;
-    }
+    // Helper
+    const isMobile = () => window.innerWidth <= 768;
 
-    navToggle.setAttribute("aria-expanded", "false");
+    // Atributos iniciales seguros
+    if (navToggle) navToggle.setAttribute("aria-expanded", "false");
+    if (navLinks) navLinks.hidden = isMobile();
 
-    navToggle.addEventListener("click", () => {
-        const expanded = navToggle.getAttribute("aria-expanded") === "true" || false;
-        navToggle.setAttribute("aria-expanded", !expanded);
-
-        // 🔧 Solución: mostrar u ocultar lista del menú
-        navLinks.hidden = !navLinks.hidden;
-
-        navLinks.classList.toggle("show");
-        navToggle.classList.toggle("active");
-
-        navToggle.innerHTML = navToggle.classList.contains("active")
-            ? `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fff" viewBox="0 0 24 24"><path d="M6 6L18 18M6 18L18 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>`
-            : `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#fff" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>`;
+    // Actualizar al redimensionar (desktop <-> mobile)
+    window.addEventListener("resize", () => {
+        if (!navLinks) return;
+        // en escritorio siempre mostrar nav (no hidden)
+        navLinks.hidden = isMobile();
+        if (!isMobile()) {
+            navLinks.classList.remove("show");
+            if (navToggle) {
+                navToggle.classList.remove("active");
+                navToggle.setAttribute("aria-expanded", "false");
+            }
+            // cerrar submenus
+            dropdowns.forEach(d => d.classList.remove("show"));
+        }
     });
 
-    /* ===============================
-    CERRAR MENÚ AL HACER CLIC EN LINK
-    =============================== */
-    navLinks.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", e => {
-            const isDropdown = link.closest(".dropdown");
-            if (isDropdown && link.classList.contains("dropdown-toggle")) {
-                e.preventDefault(); 
-                return;
-            }
+    const closeAllMenus = () => {
+        if (navLinks) {
             navLinks.classList.remove("show");
-            navLinks.hidden = true;
+            navLinks.hidden = isMobile();
+        }
+        dropdowns.forEach(d => d.classList.remove("show"));
+        if (navToggle) {
             navToggle.classList.remove("active");
             navToggle.setAttribute("aria-expanded", "false");
+        }
+    };
+
+    /* NAVBAR TOGGLE: abre solo el panel principal en móvil */
+    if (navToggle && navLinks) {
+        navToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            // solo en mobile togglear visibilidad
+            if (isMobile()) {
+                const isOpen = navLinks.classList.toggle("show");
+                navLinks.hidden = !isOpen;
+                navToggle.classList.toggle("active", isOpen);
+                navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+                dropdowns.forEach(d => d.classList.remove("show"));
+            }
+        });
+    }
+
+    /* Dropdown: toggle por click (funciona en desktop y mobile) */
+    dropdowns.forEach(drop => {
+        const toggle = drop.querySelector(".dropdown-toggle");
+        if (!toggle) return;
+        toggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // cerrar otros submenus
+            dropdowns.forEach(d => { if (d !== drop) d.classList.remove("show"); });
+            drop.classList.toggle("show");
         });
     });
 
-    /* ===============================
-    MODAL DINÁMICO
-    =============================== */
+    /* Abrir modal desde items del dropdown (mantiene tu lógica) */
     document.querySelectorAll(".dropdown-menu a").forEach(item => {
         item.addEventListener("click", e => {
             e.preventDefault();
             const text = item.textContent.trim();
-            let contenido = "";
-
+            let contenido = `<h2>${text}</h2><p>Contenido próximamente disponible.</p>`;
             switch (text) {
                 case "Seguimiento de mi Pedido":
-                    contenido = `
-                        <h2>🚚 Seguimiento de Pedido</h2>
-                        <p>Puedes rastrear el estado de tu pedido ingresando tu número de seguimiento.</p>`;
+                    contenido = `<h2>🚚 Seguimiento de Pedido</h2><p>Puedes rastrear el estado de tu pedido ingresando tu número de seguimiento.</p>`;
                     break;
                 case "Políticas de Privacidad":
-                    contenido = `
-                        <h2>🔒 Políticas de Privacidad</h2>
-                        <p>Protegemos tus datos personales. No compartimos tu información sin tu consentimiento.</p>`;
+                    contenido = `<h2>🔒 Políticas de Privacidad</h2><p>Protegemos tus datos personales. No compartimos tu información sin tu consentimiento.</p>`;
                     break;
                 case "Términos y Condiciones":
-                    contenido = `
-                        <h2>📜 Términos y Condiciones</h2>
-                        <p>Al usar nuestro sitio aceptas nuestras políticas de uso, pagos y devoluciones.</p>`;
+                    contenido = `<h2>📜 Términos y Condiciones</h2><p>Al usar nuestro sitio aceptas nuestras políticas de uso, pagos y devoluciones.</p>`;
                     break;
                 case "Contacto y sobre Nosotros":
-                    contenido = `
-                        <h2>📞 Sobre Nosotros</h2>
-                        <p>Somos <strong>Novedades Contigo Perú</strong>, líderes en accesorios de calidad premium.</p>
-                        <p>Escríbenos a <strong>contacto@novedadescontigo.pe</strong></p>`;
+                    contenido = `<h2>📞 Sobre Nosotros</h2><p>Somos <strong>Novedades Contigo Perú</strong>. Escríbenos a <strong>contacto@novedadescontigo.pe</strong></p>`;
                     break;
                 case "Libro de Reclamaciones":
-                    contenido = `
-                        <h2>📕 Libro de Reclamaciones</h2>
-                        <p>Puedes presentar tu reclamo llenando el formulario oficial del MINCETUR.</p>`;
+                    contenido = `<h2>📕 Libro de Reclamaciones</h2><p>Puedes presentar tu reclamo llenando el formulario oficial del MINCETUR.</p>`;
                     break;
-                default:
-                    contenido = `<h2>${text}</h2><p>Contenido próximamente disponible.</p>`;
             }
-
-            modalBody.innerHTML = contenido;
-            modal.classList.add("show");
-            modal.setAttribute("aria-hidden", "false");
+            if (modal && modalBody) {
+                modalBody.innerHTML = contenido;
+                modal.classList.add("show");
+                modal.setAttribute("aria-hidden", "false");
+            }
+            closeAllMenus();
         });
     });
 
-    /* ===============================
-    CERRAR MODAL
-    =============================== */
+    /* Cerrar modal */
     const cerrarModal = () => {
+        if (!modal) return;
         modal.classList.remove("show");
         setTimeout(() => {
             modal.setAttribute("aria-hidden", "true");
-            modalBody.innerHTML = "";
-        }, 300);
+            if (modalBody) modalBody.innerHTML = "";
+        }, 250);
     };
+    if (modalClose) modalClose.addEventListener("click", cerrarModal);
+    if (modal) modal.addEventListener("click", e => { if (e.target === modal) cerrarModal(); });
 
-    modalClose.addEventListener("click", cerrarModal);
-    modal.addEventListener("click", e => {
-        if (e.target === modal) cerrarModal();
+    /* Click fuera: cerrar todo */
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".site-nav")) {
+            closeAllMenus();
+        }
     });
 
+    /* ESC: cerrar todo */
     document.addEventListener("keydown", e => {
-        if (e.key === "Escape" && modal.classList.contains("show")) cerrarModal();
+        if (e.key === "Escape") {
+            if (modal && modal.classList.contains("show")) cerrarModal();
+            closeAllMenus();
+        }
     });
 });
